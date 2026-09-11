@@ -52,10 +52,26 @@ export interface Opportunity {
 
 export interface MatchResult {
   opportunityId: string;
-  overallScore: number;  // 0 – 100
-  matchedSkills: string[];
-  missingSkills: string[];
-  explanation: string;   // Human-readable reason for the match score
+  opportunityTitle: string;
+  overallScore: number;           // 0 – 100, rounded integer
+  matchedRequiredSkills: string[];
+  missingRequiredSkills: string[];
+  matchedPreferredSkills: string[];
+  missingPreferredSkills: string[];
+  interestMatches: string[];
+  skillGaps: string[];            // Required skills the student should learn
+  breakdown: {
+    requiredSkillScore: number;   // 0 – 100
+    preferredSkillScore: number;  // 0 – 100
+    interestScore: number;        // 0 – 100
+    evidenceScore: number;        // 0 – 100
+  };
+  explanation: string;            // Human-readable reason for the match score
+}
+
+export interface MatchRequest {
+  studentId: string;
+  opportunityId: string;
 }
 
 // --- API Input Types ---
